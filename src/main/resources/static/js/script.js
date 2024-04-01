@@ -29,7 +29,7 @@ submitButton.addEventListener('click', async (event) => {
             },
             body: JSON.stringify({
                 email: email,
-                nome: nome,
+                name: nome,
                 cargo: cargo,
                 password: tokem,
             }),
@@ -43,7 +43,7 @@ submitButton.addEventListener('click', async (event) => {
         } else {
             // Requisição falhou
             const error = await response.json();
-            message.textContent = error.message || 'Cadastro falhou.';
+            message.textContent = error.body || 'Cadastro falhou.';
         }
     } catch (error) {
         console.error('Erro ao enviar requisição:', error);

@@ -1,5 +1,9 @@
 package com.springwithmongo.basicspringmongo.Entities;
 
+import com.springwithmongo.basicspringmongo.Validators.NotEmptyOrNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,9 +15,13 @@ import java.util.List;
 public class User {
     @Id
     private String id;
+    @NotEmptyOrNull(message = "Email cannot be null or empty")
     private String email;
+    @NotEmptyOrNull(message = "Name cannot be null or empty")
     private String name;
-    private String Cargo;
+    @NotEmptyOrNull(message = "Cargo cannot be null or empty")
+    private String cargo;
+    @NotEmptyOrNull(message = "Password cannot be null or empty")
     private String password;
     @DBRef(lazy = true)
     private List<Task> tasks = new ArrayList<>();
@@ -25,7 +33,7 @@ public class User {
         this.id = id;
         this.email = email;
         this.name = name;
-        Cargo = cargo;
+        this.cargo = cargo;
         this.password = password;
     }
 
@@ -54,11 +62,11 @@ public class User {
     }
 
     public String getCargo() {
-        return Cargo;
+        return cargo;
     }
 
     public void setCargo(String cargo) {
-        Cargo = cargo;
+        this.cargo = cargo;
     }
 
     public String getPassword() {
